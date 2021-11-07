@@ -1,0 +1,29 @@
+.assortment_card {
+    display: flex;
+}
+
+.cards {
+    display: flex;
+    align-items: baseline;
+    text-align: center;
+}
+
+.line_cards {
+    background-color: #ECEBE9;
+}
+
+
+.content_btn {
+    margin-top: 75px;
+    background-color: #3F3F3F;
+    background-repeat:no-repeat;
+    width: 270px;
+    height: 70px;
+    color: #ECEBE9;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 3px #3F3F3F solid;
+    border-radius: 0;
+    margin-bottom: 60px;
+}
