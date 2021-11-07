@@ -46,3 +46,8 @@ class Product(models.Model):
     def image_url(self):
         if self.image and hasattr(self.image, 'url'):
             return self.image.url
+
+
+class Feedback(models.Model):
+    name = models.CharField(max_length=200)
+    phone = models.CharField(max_length=20)

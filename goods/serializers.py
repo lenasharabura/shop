@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
-from goods.models import Product, Category
+from goods.models import Product, Category, Feedback
 
 
 class ProductListSerializer(ModelSerializer):
@@ -30,3 +30,8 @@ class ProductDetailSerializer(ModelSerializer):
         model = Product
         fields = '__all__'
 
+
+class FeedbackSerializer(ModelSerializer):
+    class Meta:
+        model = Feedback
+        fields = '__all__'
