@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from requests import Response
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from django.views.generic import UpdateView
+
+from rest_framework import status, permissions, mixins
+from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, GenericAPIView
 
 __all__ = (
     'CategoryListView',
@@ -11,7 +13,8 @@ __all__ = (
     'home'
 )
 
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.mixins import CreateModelMixin
+from rest_framework.response import Response
 
 from goods.models import Category, Product, Feedback
 from goods.serializers import CategorySerializer, ProductListSerializer, ProductDetailSerializer, FeedbackSerializer
@@ -48,6 +51,14 @@ class CategoryDetailView(ListAPIView):
         return qs.filter(category__slug=self.kwargs['slug'], available=True)
 
 
-class FeedbackView(ModelViewSet):
+class FeedbackView(mixins.CreateModelMixin, GenericAPIView):
     queryset = Feedback.objects.all()
     serializer_class = FeedbackSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = FeedbackSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

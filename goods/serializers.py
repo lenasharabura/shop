@@ -16,7 +16,6 @@ class CategorySerializer(ModelSerializer):
     name = serializers.CharField(required=True)
     slug = serializers.CharField(required=True)
     image = serializers.ImageField(max_length=None, use_url=True)
-    # products = serializers.RelatedField(many=True)
 
     class Meta:
         model = Category
@@ -32,6 +31,7 @@ class ProductDetailSerializer(ModelSerializer):
 
 
 class FeedbackSerializer(ModelSerializer):
+
     class Meta:
         model = Feedback
         fields = '__all__'
