@@ -10,7 +10,6 @@ __all__ = (
     'ProductDetailView',
     'CategoryDetailView',
     'FeedbackView',
-    'home'
 )
 
 from rest_framework.response import Response
