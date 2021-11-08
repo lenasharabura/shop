@@ -12,6 +12,8 @@ __all__ = (
     'FeedbackView',
 )
 
+from rest_framework.parsers import JSONParser, MultiPartParser
+
 from rest_framework.response import Response
 
 from goods.models import Category, Product, Feedback
@@ -48,6 +50,7 @@ class CategoryDetailView(ListAPIView):
 class FeedbackView(mixins.CreateModelMixin, GenericAPIView):
     queryset = Feedback.objects.all()
     serializer_class = FeedbackSerializer
+    parser_classes = (JSONParser, MultiPartParser, )
 
     def post(self, request, *args, **kwargs):
         serializer = FeedbackSerializer(data=request.data)
