@@ -13,15 +13,10 @@ __all__ = (
     'home'
 )
 
-from rest_framework.mixins import CreateModelMixin
 from rest_framework.response import Response
 
 from goods.models import Category, Product, Feedback
 from goods.serializers import CategorySerializer, ProductListSerializer, ProductDetailSerializer, FeedbackSerializer
-
-
-def home(request):
-    return render(request, 'index.html')
 
 
 class CategoryListView(ListAPIView):
