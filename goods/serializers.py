@@ -5,7 +5,6 @@ from goods.models import Product, Category, Feedback
 
 
 class ProductListSerializer(ModelSerializer):
-    image = serializers.ImageField(max_length=None, use_url=True)
 
     class Meta:
         model = Product
@@ -15,15 +14,12 @@ class ProductListSerializer(ModelSerializer):
 class CategorySerializer(ModelSerializer):
     name = serializers.CharField(required=True)
     slug = serializers.CharField(required=True)
-    image = serializers.ImageField(max_length=None, use_url=True)
-
     class Meta:
         model = Category
         fields = '__all__'
 
 
 class ProductDetailSerializer(ModelSerializer):
-    image = serializers.ImageField(max_length=None, use_url=True)
 
     class Meta:
         model = Product
