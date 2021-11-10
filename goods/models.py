@@ -5,7 +5,7 @@ from django.urls import reverse
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, unique=True)
-    image = models.ImageField(upload_to='media/category/%Y/%m/%d', blank=True)
+    image = models.URLField(blank=True)
 
     class Meta:
         ordering = ('name',)
@@ -25,9 +25,9 @@ class Product(models.Model):
                                  on_delete=models.CASCADE)
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, unique=True)
-    image = models.ImageField(upload_to='media/products/%Y/%m/%d', blank=True)
+    image = models.URLField(blank=True)
     description = models.TextField(blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.IntegerField()
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
